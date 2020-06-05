@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ClientAPI.Service.Validators;
-
+using FluentValidation;
 
 namespace ClientAPI.Application.Controllers
 {
@@ -28,18 +28,14 @@ namespace ClientAPI.Application.Controllers
         {
             try
             {
-                _clientValidator.Validate(cliente);
+                _clientValidator.CustomValidate(cliente);
                 _clienteRepository.Insert(cliente);
 
                 return Ok(cliente.id);
             }
-            catch (ArgumentNullException ex)
-            {
-                return NotFound(ex);
-            }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -48,18 +44,14 @@ namespace ClientAPI.Application.Controllers
         {
             try
             {
-                _clientValidator.Validate(cliente);
+                _clientValidator.CustomValidate(cliente);
                 _clienteRepository.Update(cliente);
 
                 return Ok(cliente.id);
             }
-            catch (ArgumentNullException ex)
-            {
-                return NotFound(ex);
-            }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -73,11 +65,11 @@ namespace ClientAPI.Application.Controllers
             }
             catch (ArgumentException ex)
             {
-                return NotFound(ex);
+                return NotFound();
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -90,11 +82,11 @@ namespace ClientAPI.Application.Controllers
             }
             catch (ArgumentException ex)
             {
-                return NotFound(ex);
+                return NotFound();
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -107,11 +99,11 @@ namespace ClientAPI.Application.Controllers
             }
             catch (ArgumentException ex)
             {
-                return NotFound(ex);
+                return NotFound();
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
 

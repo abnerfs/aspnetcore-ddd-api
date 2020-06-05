@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClientAPI.Domain\ClientAPI.Domain.csproj" />
+    <ProjectReference Include="..\ClientAPI.Infra.CrossCutting\ClientAPI.Infra.CrossCutting.csproj" />
   </ItemGroup>
 
 </Project>

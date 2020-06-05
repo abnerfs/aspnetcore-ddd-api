@@ -12,39 +12,37 @@ namespace ClientAPI.Service.Validators
         {
             RuleFor(x => x)
                 .NotNull()
-                .OnAnyFailure(x =>
-                {
-                    throw new Exception("Endereço inválido");
-                });
+                .OnAnyFailure(x => throw new ArgumentException("Endereço inválido"));
 
             RuleFor(x => x.Bairro)
                 .NotNull()
-                .NotEmpty()
-                .OnAnyFailure(x => throw new Exception("Informe o bairro"));
+                .WithMessage("Informe o bairro");
 
+
+            var CidadeInvalida = "Informe uma cidade válida";
             RuleFor(x => x.Cidade)
-                .NotNull()
-                .NotEmpty()
-                .OnAnyFailure(x => throw new Exception("Informe uma cidade válida"));
+                .NotNull().WithMessage(CidadeInvalida)
+                .NotEmpty().WithMessage(CidadeInvalida);
 
+
+            var EstadoInvalido = "Informe um estado válido";
             RuleFor(x => x.Estado)
-                .NotNull()
-                .NotEmpty()
-                .Length(2)
-                .OnAnyFailure(x => throw new Exception("Informe um estado válido"));
+                .NotNull().WithMessage(EstadoInvalido)
+                .NotEmpty().WithMessage(EstadoInvalido)
+                .Length(2).WithMessage(EstadoInvalido);
 
+
+            var CepInvalido = "Informe uma CEP válido";
             RuleFor(x => x.Cep)
-                .NotNull()
-                .NotEmpty()
-                .Length(8)
-                .OnAnyFailure(x => throw new Exception("Informe uma CEP válido"));
+                .NotNull().WithMessage(CepInvalido)
+                .NotEmpty().WithMessage(CepInvalido)
+                .Length(8).WithMessage(CepInvalido);
 
 
+            var LogradouroInvalido = "Informe o logradouro do endereço";
             RuleFor(x => x.Logradouro)
-                .NotNull()
-                .NotEmpty()
-                .OnAnyFailure(x => throw new Exception("Informe o logradouro do endereço"));
-
+                .NotNull().WithMessage(LogradouroInvalido)
+                .NotEmpty().WithMessage(LogradouroInvalido);
         }
     }
 }

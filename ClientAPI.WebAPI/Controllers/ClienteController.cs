@@ -14,10 +14,10 @@ namespace ClientAPI.Application.Controllers
     [ApiController]
     public class ClienteController : ControllerBase
     {
-        private Repository<Cliente> _clienteRepository;
+        private ClienteRepository _clienteRepository;
         private ClienteValidator _clientValidator;
 
-        public ClienteController(Repository<Cliente> clienteRepository, ClienteValidator clientValidator)
+        public ClienteController(ClienteRepository clienteRepository, ClienteValidator clientValidator)
         {
             _clienteRepository = clienteRepository;
             _clientValidator = clientValidator;
@@ -86,7 +86,7 @@ namespace ClientAPI.Application.Controllers
         {
             try
             {
-                return Ok(_clienteRepository.Select(id));
+                return Ok(_clienteRepository.Get(id));
             }
             catch (ArgumentException ex)
             {
@@ -103,7 +103,7 @@ namespace ClientAPI.Application.Controllers
         {
             try
             {
-                return Ok(_clienteRepository.Select());
+                return Ok(_clienteRepository.List());
             }
             catch (ArgumentException ex)
             {

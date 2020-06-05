@@ -18,7 +18,7 @@ namespace ClientAPI.Domain.Entities
         public string Email { get; set; }
         public TipoPessoa Tipo { get; set; }
         public string CGC { get; set; }
-        public IEnumerable<Telefone> Telefones { get; set; } = new List<Telefone>();
-        public IEnumerable<Endereco> Enderecos { get; set; } = new List<Endereco>();
+        public virtual IEnumerable<Telefone> Telefones { get; set; }
+        public virtual IEnumerable<Endereco> Enderecos { get; set; }
     }
 }

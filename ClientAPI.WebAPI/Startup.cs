@@ -33,8 +33,8 @@ namespace ClientAPI.WebAPI
             services.AddControllers();
 
             var connection = Configuration["ConexaoSqlite:SqliteConnectionString"];
-            services.AddSqlite(connection);
-            services.AddScoped(x => new Repository<Cliente>(x.GetService<SqlContext>()));
+            services.AddSqlite(connection, "ClientAPI.WebAPI");
+            services.AddScoped(x => new ClienteRepository(x.GetService<SqlContext>()));
             services.AddScoped(x => new Repository<Endereco>(x.GetService<SqlContext>()));
             services.AddScoped(x => new Repository<Telefone>(x.GetService<SqlContext>()));
             services.AddScoped(x => new ClienteValidator());

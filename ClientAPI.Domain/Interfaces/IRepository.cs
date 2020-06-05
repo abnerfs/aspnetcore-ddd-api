@@ -13,8 +13,8 @@ namespace ClientAPI.Domain.Interfaces
 
         void Delete(int id);
 
-        T Select(int id);
+        T Get(int id);
 
-        IList<T> Select();
+        IList<T> List();
     }
 }

@@ -31,16 +31,16 @@ namespace ClientApi.Infra.Data.Repository
 
         public void Delete(int id)
         {
-            context.Set<T>().Remove(Select(id));
+            context.Set<T>().Remove(Get(id));
             context.SaveChanges();
         }
 
-        public IList<T> Select()
+        public IList<T> List()
         {
             return context.Set<T>().ToList();
         }
 
-        public T Select(int id)
+        public T Get(int id)
         {
             return context.Set<T>().Find(id);
         }

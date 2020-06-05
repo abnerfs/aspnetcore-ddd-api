@@ -10,19 +10,19 @@ namespace ClientApi.Infra.Data.Context
 {
     public static class ContextExtension
     {
-        public static IServiceCollection AddSqlite(this IServiceCollection services, string connectionString)
+        public static IServiceCollection AddSqlite(this IServiceCollection services, string connectionString, string migrationAssembly)
         {
             return services.AddDbContext<SqlContext>(options =>
-                options.UseSqlite(connectionString, b => b.MigrationsAssembly("ClientAPI.WebAPI"))
+                options.UseSqlite(connectionString, b => b.MigrationsAssembly(migrationAssembly))
             ); 
         }
     }
 
     public class SqlContext : DbContext
     {
-        public DbSet<Cliente> Clientes;
-        public DbSet<Endereco> Enderecos;
-        public DbSet<Telefone> Telefones;
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Endereco> Enderecos { get; set; }
+        public DbSet<Telefone> Telefones { get; set; }
 
         public SqlContext(DbContextOptions<SqlContext> options) : base(options)
         {
